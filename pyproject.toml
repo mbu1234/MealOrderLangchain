@@ -1,0 +1,28 @@
+[project]
+name = "mealorder-langchain"
+version = "0.1.0"
+description = "MealOrder agent Max built on LangChain: FastAPI web service using the Workday MCP server, Pinecone, Slack and Pipedream"
+readme = "README.md"
+authors = [
+    { name = "Mark Butterly", email = "markbutterly009@gmail.com" }
+]
+requires-python = ">=3.12"
+dependencies = [
+    "fastapi>=0.143.0",
+    "httpx>=0.28.1",
+    "langchain>=1.4.4",
+    "langchain-google-genai>=4.4.0",
+    "langchain-mcp-adapters>=0.3.2",
+    "langchain-openai>=1.7.0",
+    "langchain-pinecone>=0.2.13",
+    "pipedream>=2.1.20",
+    "python-dotenv>=1.2.4",
+    "uvicorn[standard]>=0.54.0",
+]
+
+[project.scripts]
+mealorder-langchain = "mealorder_langchain.app:main"
+
+[build-system]
+requires = ["uv_build>=0.12.23,<0.13.0"]
+build-backend = "uv_build"

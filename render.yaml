@@ -1,0 +1,39 @@
+services:
+  - type: web
+    name: mealorder-langchain
+    runtime: python
+    plan: starter
+    buildCommand: pip install uv && uv sync --frozen --no-dev
+    startCommand: uv run --no-dev uvicorn mealorder_langchain.app:app --host 0.0.0.0 --port $PORT
+    healthCheckPath: /health
+    envVars:
+      - key: PYTHON_VERSION
+        value: 3.12.7
+      - key: PROVIDER
+        value: openai
+      - key: MCP_URL
+        value: https://workday-mcp-server-mpt2.onrender.com/mcp
+      # Secrets: set these in the Render dashboard (never commit them)
+      - key: OPENAI_API_KEY
+        sync: false
+      - key: GEMINI_API_KEY
+        sync: false
+      - key: PINECONE_API_KEY
+        sync: false
+      - key: SLACK_BOT_TOKEN
+        sync: false
+      # Hard-to-guess URL segment: the chat endpoint is served at /chat/<value>
+      - key: CHAT_PATH_SECRET
+        sync: false
+      - key: API_TOKEN
+        sync: false
+      - key: PIPEDREAM_CLIENT_ID
+        sync: false
+      - key: PIPEDREAM_CLIENT_SECRET
+        sync: false
+      - key: PIPEDREAM_PROJECT_ID
+        sync: false
+      - key: PIPEDREAM_GMAIL_ACCOUNT_ID
+        sync: false
+      - key: PIPEDREAM_PUSHOVER_ACCOUNT_ID
+        sync: false
